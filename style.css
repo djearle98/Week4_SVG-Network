@@ -1,9 +1,5 @@
-
 :root{
   --node-color: gold;
-  --pos-x: 10px;
-  --pos-y: 10px;
-
 }
 
 body {
@@ -20,8 +16,7 @@ body {
 }
 
 .node-container {
-  transition: all 1s;
-  transform: translate(var(--pos-x), var(--pos-y));
+  transition: all 0.7s 0.3s, transform 1s;
 }
 
 .node{
@@ -36,4 +31,13 @@ body {
 .dev_outline{
   stroke: pink;
   stroke-width: 5px;
+}
+
+.title{
+  user-select: none;
+}
+
+.blanket{
+  fill: rgba(255, 255, 255, 0);
+  cursor: move;
 }
