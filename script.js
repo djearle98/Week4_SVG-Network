@@ -1,7 +1,22 @@
 var SVG_NS = 'http://www.w3.org/2000/svg';
 var XLink_NS = 'http://www.w3.org/1999/xlink';
-var stage = document.getElementById("stage");
 var nodes = [];
+var lines = [];
+var stage = document.getElementById("stage");
+
+var lineLayer = document.createElementNS(SVG_NS, "svg");
+lineLayer.setAttribute("class", "line-layer");
+let lineLayer_bg = document.createElementNS(SVG_NS, "rect");
+lineLayer_bg.setAttribute("class","line-layer_bg");
+lineLayer.appendChild(lineLayer_bg);
+stage.appendChild(lineLayer);
+
+var nodeLayer = document.createElementNS(SVG_NS, "svg");
+nodeLayer.setAttribute("class", "node-layer");
+let nodeLayer_bg = document.createElementNS(SVG_NS, "rect");
+nodeLayer_bg.setAttribute("class","node-layer_bg");
+nodeLayer.appendChild(nodeLayer_bg);
+stage.appendChild(nodeLayer);
 
 class Node {
 	constructor(title,x,y,r) {
@@ -53,7 +68,7 @@ class Node {
     this.nodeContainer.appendChild(this.node);
 		
     //add node container to stage
-		stage.appendChild(this.nodeContainer);
+		nodeLayer.appendChild(this.nodeContainer);
   }
   set radius(r){
   	this.r = r;
@@ -79,8 +94,50 @@ class Node {
     this.coordinates=c;
   }
 }
+class Line{
+	constructor(parent, child){
+  	this.parent = parent;
+    this.child = child;
+    this.line = document.createElementNS(SVG_NS,"line");
+    this.line.setAttribute("class","node-line");
+		
+    let pc = parent.coordinates;
+    let cc = child.coordinates;
+  	this.line.setAttribute("x1", pc[0]);
+    this.line.setAttribute("y1", pc[1]);
+  	this.line.setAttribute("x2", cc[0]);
+    this.line.setAttribute("y2", cc[1]);
+    lineLayer.appendChild(this.line);
+  }
+  update(){ //TODO: DOESN'T WORK
+  	//Uncaught DOMException: Blocked a frame with origin "https://fiddle.jshell.net" from accessing a cross-origin frame.
 
-nodes.push(new Node("NODE 1", 0, 0, 50));
-nodes.push(new Node("NODE 2", 100, 100, 70));
-nodes.push(new Node("NODE 3", 200, 200, 90));
-nodes.push(new Node("NODE 4", 400, 400, 110));
+  	let pc = parent.coordinates;
+    let cc = child.coordinates;
+  	this.line.setAttribute("x1", pc[0]);
+    this.line.setAttribute("y1", pc[1]);
+  	this.line.setAttribute("x2", cc[0]);
+    this.line.setAttribute("y2", cc[1]);
+  }
+}
+
+nodes.push(new Node("NODE 1", 130, 153, 196/2));
+nodes.push(new Node("NODE 2", 220, 373, 118/2));
+nodes.push(new Node("NODE 3", 435, 381, 174/2));
+nodes.push(new Node("NODE 4", 372, 169, 138/2));
+nodes.push(new Node("NODE 5", 353, 553, 118/2));
+nodes.push(new Node("NODE 6", 546, 553, 118/2));
+nodes.push(new Node("NODE 7", 640, 383, 118/2));
+nodes.push(new Node("NODE 8", 555, 243, 118/2));
+nodes.push(new Node("NODE 9", 555, 94, 118/2));
+
+lines.push(new Line(nodes[0],nodes[1]));
+lines.push(new Line(nodes[0],nodes[2]));
+lines.push(new Line(nodes[0],nodes[3]));
+lines.push(new Line(nodes[3],nodes[7]));
+lines.push(new Line(nodes[3],nodes[8]));
+lines.push(new Line(nodes[2],nodes[4]));
+lines.push(new Line(nodes[2],nodes[5]));
+lines.push(new Line(nodes[2],nodes[6]));
+
+//lines[0].update(); //throws error
