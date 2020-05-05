@@ -1,5 +1,5 @@
-:root{
-  --node-color: gold;
+:root {
+  --node-color: #B0F1E5;
 }
 
 body {
@@ -14,30 +14,53 @@ body {
   border-color: teal;
   position: absolute;
 }
+.node-line{
+  stroke: #2F9C89;
+  stroke-width: 10;
+}
+.node-layer{
+  width: 100%;
+  height: 100%;
+}
+.node-layer_bg{
+  width: 100%;
+  height: 100%;
+  fill: none;
+}
+.line-layer{
+  width: 100px;
+  height: 100px;
+}
+.line-layer_bg{
+  width: 100%;
+  height: 100%;
+  fill: none;
+}
+
 
 .node-container {
   transition: all 0.7s 0.3s, transform 1s;
 }
 
-.node{
+.node {
   transition: inherit;
 }
 
-.node_background{
+.node_background {
   transition: inherit;
   fill: var(--node-color);
 }
 
-.dev_outline{
+.dev_outline {
   stroke: pink;
   stroke-width: 5px;
 }
 
-.title{
+.title {
   user-select: none;
 }
 
-.blanket{
+.blanket {
   fill: rgba(255, 255, 255, 0);
   cursor: move;
 }
