@@ -1,5 +1,7 @@
 :root {
-  --node-color: #B0F1E5;
+  --node-color: #fff;
+  --primary-dark: #2F9C89;
+  --status-green: #35F66B;
 }
 
 body {
@@ -7,15 +9,12 @@ body {
 }
 
 #stage {
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
-  border-width: 10px;
-  border-style: solid;
-  border-color: teal;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
 }
 .node-line{
-  stroke: #2F9C89;
+  stroke: var(--primary-dark);
   stroke-width: 10;
 }
 .node-layer{
@@ -36,8 +35,6 @@ body {
   height: 100%;
   fill: none;
 }
-
-
 .node-container {
   transition: all 0.7s 0.3s, transform 1s;
 }
@@ -51,6 +48,18 @@ body {
   fill: var(--node-color);
 }
 
+.node_shadow {
+  transition: inherit;
+  fill: var(--primary-dark);
+}
+
+.node_status-ring{
+  transition: inherit;
+  fill: none;
+  stroke: var(--status-green);
+  stroke-width: 2px;
+}
+
 .dev_outline {
   stroke: pink;
   stroke-width: 5px;
@@ -58,9 +67,17 @@ body {
 
 .title {
   user-select: none;
+  font-family: sans-serif;
+  font-size: 1em;
 }
 
 .blanket {
   fill: rgba(255, 255, 255, 0);
   cursor: move;
+}
+#background {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  transform: translate(10px, 10px);
+  fill: url(#gradient) #B0F1E5;
 }
